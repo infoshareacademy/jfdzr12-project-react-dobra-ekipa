@@ -45,3 +45,29 @@
   height : 100px;
   width : 100px;
 }
+
+.price {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: lightgrey;
+  width: 200px;
+  border-radius: 10px;
+  text-align: center;
+  height: 200px;
+  font-size: 20px;
+  margin: 10px;
+}
+
+.priceItem {
+  display: flex;
+  justify-content: center;
+  background-color: gray;
+  max-width: 120%;
+  min-width: 100%;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 120%;
+  gap: 10px;
+}
