@@ -11,7 +11,7 @@ const PriceList = () => {
             header={'x10 pack'}
             value={'$70'}
         >
-        </Price></>
+            </Price></>
     )
 }
 
