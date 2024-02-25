@@ -49,17 +49,17 @@ export function SignInForm({
 			<form {...props} className='space-y-6'>
 				<Label>
 					Email
-					<Input name='email' type='email'/>
+					<Input id="email" name='email' type='email'/>
 				</Label>
 
 				<Label htmlFor='password'>
 					Password
-					<Input name='password' type='password'/>
+					<Input id="password" name='password' type='password'/>
 				</Label>
 
 				{props.children}
 
-				<Button type='submit'>Sign in</Button>
+				<Button id="button-submit" type='submit'>Sign in</Button>
 			</form>
 		</CardContent>
 	</Card>

@@ -1,23 +1,70 @@
 import {describe, expect, it, vi} from 'vitest';
 import {FormEvent} from 'react'
 import {signIn, SignInForm} from './sign-in'
-import {render, screen} from '@testing-library/react';
+import {render, screen, fireEvent} from '@testing-library/react';
 import {getFormData} from '../form/get-data';
 
 describe('SignInForm', () => {
-	it.todo('should display email input')
-	it.todo('should display password input')
-	it.todo('should display sign in button')
+	const { baseElement } = render(<SignInForm />);
+	it.todo('should display email input', () => {
+		const email = baseElement.querySelector('#email');
+		expect(email).toBeTruthy();
+	})
+	it.todo('should display password input', () => {
+		const password = baseElement.querySelector('#password');
+		expect(password).toBeTruthy();
+	})
+	it.todo('should display sign in button', () => {
+		const buttonSubmit = baseElement.querySelector('#button-submit');
+		expect(buttonSubmit).toBeTruthy();
+	})
 
-	it.todo('should be submitted with email and password', () => {
+	it.todo('should be submitted with email and password', async() => {
 		const onSubmit = vi.fn((event: FormEvent<HTMLFormElement>) => getFormData(event.currentTarget))
 
 		render(<SignInForm onSubmit={onSubmit}/>)
+		const button = screen.getByText("Sign in");
+		fireEvent.click(button);
+
+		await waitFor(() => {
+			expect(onSubmit).toHaveBeenCalled();
+		  });
 	})
 })
 
 describe('signIn', () => {
-	it.todo('should return `wrong email` error')
-	it.todo('should return `invalid password` error')
-	it.todo('should authenticate user')
+	const { debug } =  render(<SignInForm />);
+	it.todo('should return `wrong email` error', () => {
+		const email = screen.getByLabelText('Email');
+		fireEvent.change(email, { target: { value: 'niepoprawny email' } });
+		expect(screen.getByText('Niepoprawny email')).toBeVisible();
+	})
+	it.todo('should return `invalid password` error', () => {
+		const password = screen.getByLabelText('Password');
+		fireEvent.change(password, { target: { value: 'a' } })
+		expect(screen.getByText('Niepoprawny email')).toBeVisible();
+	})
+	it.todo('should authenticate user', async() => {
+		const onSuccesSpy = jest.fn();
+		const onFailSpy = jest.fn();
+  
+		render(<SignInForm onSuccess={onSuccesSpy} onFail={onFailSpy}/>);
+		const email = screen.getByLabelText('Email');
+		const password = screen.getByLabelText('Password');
+		const button = screen.getByText("Sign In");
+		const loginSpy = jest.spyOn(api, 'login').mockResolvedValueOnce('oki');
+  
+		// when
+		fireEvent.change(email, { target: { value: 'mariuszkowalski@onet.pl' } });
+		fireEvent.change(password, { target: { value: 'Mariusz1234!' } })
+		fireEvent.click(button);
+  
+		await waitFor(() => {
+		  expect(onSuccesSpy).toHaveBeenCalled();
+		  expect(onFailSpy).not.toHaveBeenCalled();
+		});
+		
+		// then
+		expect(loginSpy).toHaveBeenCalled();
+	})
 })
