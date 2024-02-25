@@ -6,20 +6,20 @@ import {getFormData} from '../form/get-data';
 
 describe('SignInForm', () => {
 	const { baseElement } = render(<SignInForm />);
-	it.todo('should display email input', () => {
+	it('should display email input', () => {
 		const email = baseElement.querySelector('#email');
 		expect(email).toBeTruthy();
 	})
-	it.todo('should display password input', () => {
+	it('should display password input', () => {
 		const password = baseElement.querySelector('#password');
 		expect(password).toBeTruthy();
 	})
-	it.todo('should display sign in button', () => {
+	it('should display sign in button', () => {
 		const buttonSubmit = baseElement.querySelector('#button-submit');
 		expect(buttonSubmit).toBeTruthy();
 	})
 
-	it.todo('should be submitted with email and password', async() => {
+	it('should be submitted with email and password', async() => {
 		const onSubmit = vi.fn((event: FormEvent<HTMLFormElement>) => getFormData(event.currentTarget))
 
 		render(<SignInForm onSubmit={onSubmit}/>)
@@ -34,19 +34,19 @@ describe('SignInForm', () => {
 
 describe('signIn', () => {
 	const { debug } =  render(<SignInForm />);
-	it.todo('should return `wrong email` error', () => {
+	it('should return `wrong email` error', () => {
 		const email = screen.getByLabelText('Email');
 		fireEvent.change(email, { target: { value: 'niepoprawny email' } });
 		expect(screen.getByText('Niepoprawny email')).toBeVisible();
 	})
-	it.todo('should return `invalid password` error', () => {
+	it('should return `invalid password` error', () => {
 		const password = screen.getByLabelText('Password');
 		fireEvent.change(password, { target: { value: 'a' } })
 		expect(screen.getByText('Niepoprawny email')).toBeVisible();
 	})
-	it.todo('should authenticate user', async() => {
-		const onSuccesSpy = jest.fn();
-		const onFailSpy = jest.fn();
+	it('should authenticate user', async() => {
+		const onSuccesSpy = vi.fn();
+		const onFailSpy = vi.fn();
   
 		render(<SignInForm onSuccess={onSuccesSpy} onFail={onFailSpy}/>);
 		const email = screen.getByLabelText('Email');
