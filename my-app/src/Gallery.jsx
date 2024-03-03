@@ -5,17 +5,17 @@ import { useContext } from "react";
 
 const Gallery = (props) => {
   const theme = useContext(ThemeContext);  
-  
+  const randomIndex = Math.floor(Math.random() * imageUrls.length);
+
   return (
       <>
-      <h1>The current theme is {theme}.</h1>;
       <div className="gallery">
-        {imageUrls.map((url, index) => (
-          <img key={index} src={url} alt={`Zdjęcie Galerii ${index + 1}`} />
-        ))}
+      <img key={randomIndex} src={imageUrls[randomIndex]} alt={`Zdjęcie Galerii ${randomIndex + 1}`} />
       </div>
       </>
     );
   };
   
   export default Gallery;
+
+  {/* const randomIndex = Math.floor(Math.random() * images.length); */} // losowanie indeksu zdjęcia
