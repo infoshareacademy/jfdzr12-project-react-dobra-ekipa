@@ -17,5 +17,3 @@ const Gallery = (props) => {
   };
   
   export default Gallery;
-
-  {/* const randomIndex = Math.floor(Math.random() * images.length); */} // losowanie indeksu zdjęcia
