@@ -2,12 +2,8 @@ import { ThemeContext } from "./context";
 import imageUrls from "./imageURLs";
 import { useContext } from "react";
 
-interface GalleryProps {
-  index: number;
-  url: string;
-}
 
-const Gallery = (props: GalleryProps) => {
+const Gallery = (props) => {
   const theme = useContext(ThemeContext);  
   
   return (

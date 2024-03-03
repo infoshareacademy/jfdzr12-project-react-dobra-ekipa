@@ -14,7 +14,6 @@ return (
                 <li>no modifications</li>
                 <li>single use</li>
             </ul>
-        </div>
     </>
 );
 }
